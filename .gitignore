@@ -48,3 +48,9 @@ crashlytics.properties
 crashlytics-build.properties
 
 
+
+client/bower_components
+node_modules
+client/test
+dist
+.sass-cache
