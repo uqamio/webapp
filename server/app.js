@@ -11,6 +11,8 @@ var server = app.listen(port, ip, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('Example app listening at http://%s:%s', host, port)
+    console.log('Début de l\'écoute 4 http://%s:%s', host, port);
 
 });
+
+module.exports = app;

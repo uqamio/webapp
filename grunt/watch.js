@@ -21,4 +21,11 @@ module.exports = {
             livereload: true
         }
     },
+    express: {
+        files:  [ './server/app.js' ],
+        tasks:  [ 'copy:serverApp', 'express:dev' ],
+        options: {
+            spawn: false
+        }
+    }
 };

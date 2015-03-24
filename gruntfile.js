@@ -19,6 +19,6 @@ module.exports = function (grunt) {
         'wiredep']);
 
     grunt.registerTask('serve', function (target) {
-        grunt.task.run(['build', 'express:dev', 'watch']);
+        grunt.task.run(['build', 'express:dev', 'open:dev', 'watch']);
     });
 };
