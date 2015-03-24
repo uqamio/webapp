@@ -10,20 +10,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('serve', function (target) {
-        if (target === 'dev')
-            grunt.task.run([
-                'build',
-                'env:dev',
-                'express:dev',
-                'open:dev',
-                'watch']);
-        else
-            console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
-    });
-
-    grunt.registerTask('default', ['serve:dev']);
-
     grunt.registerTask('build', [
         'clean',
         'copy',
@@ -31,4 +17,20 @@ module.exports = function (grunt) {
         'injector',
         'wiredep',
         'jsdoc:dist']);
+
+    grunt.registerTask('serve', function (target) {
+        if (target === 'dev')
+            grunt.task.run([
+                'build',
+                'executerDev']);
+        else
+            console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
+    });
+
+    grunt.registerTask('default', ['executerDev']);
+
+    grunt.registerTask('gruntDoc', [
+        'jsdoc:grunt',
+        'express:docGrunt',
+        'open:docGrunt']);
 };

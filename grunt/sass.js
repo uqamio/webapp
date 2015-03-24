@@ -1,3 +1,9 @@
+/**
+ * Permets de compiler du sass et de publier les fichiers css.
+ * Voir [grunt-contrib-sass]{@link https://www.npmjs.com/package/grunt-contrib-sass}
+ * @module grunt/sass
+ */
+
 module.exports = {
     dist: {
         options: {
@@ -5,10 +11,7 @@ module.exports = {
             trace: false,
             loadPath: 'client/bower_components/foundation/scss/'
         },
-        // Dictionary of files
         files: [
-            // 'destination': 'source'
-            //'<%= repertoires.distribution %>public/css/styles.css': '<%= repertoires.client %>**/*.scss'
             {
                 expand: true,
                 cwd: '<%= repertoires.client %>assets/css/',

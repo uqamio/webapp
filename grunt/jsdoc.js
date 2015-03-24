@@ -1,3 +1,10 @@
+/**
+ * Permet de générer de la documentation en respectant la jsdoc.
+ * JsDoc [JsDoc]{@link http://usejsdoc.org/index.html}
+ * Voir [grunt-jsdoc]{@link https://www.npmjs.com/package/grunt-jsdoc}
+ * @module grunt/jsdoc
+ */
+
 module.exports =
 {
     dist: {

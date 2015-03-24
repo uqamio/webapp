@@ -1,5 +1,11 @@
 var util = require('util');
 
+/**
+ * Permets d'injecter les ressources dans le fichier HTML.
+ * Voir [grunt-injector]{@link https://www.npmjs.com/package/grunt-injector}
+ * @module grunt/injector
+ */
+
 module.exports = {
     scripts: {
         options: {
