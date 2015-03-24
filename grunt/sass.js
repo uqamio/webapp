@@ -1,7 +1,9 @@
 module.exports = {
     dist: {
         options: {
-            style: 'expanded'
+            style: 'expanded',
+            trace: false,
+            loadPath: 'client/bower_components/foundation/scss/'
         },
         // Dictionary of files
         files: [

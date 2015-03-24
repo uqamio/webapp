@@ -9,16 +9,26 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('default', ['watch']);
+
+    grunt.registerTask('serve', function (target) {
+        if (target === 'dev')
+            grunt.task.run([
+                'build',
+                'env:dev',
+                'express:dev',
+                'open:dev',
+                'watch']);
+        else
+            console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
+    });
+
+    grunt.registerTask('default', ['serve:dev']);
 
     grunt.registerTask('build', [
         'clean',
         'copy',
         'sass',
         'injector',
-        'wiredep']);
-
-    grunt.registerTask('serve', function (target) {
-        grunt.task.run(['build', 'express:dev', 'open:dev', 'watch']);
-    });
+        'wiredep',
+        'jsdoc:dist']);
 };

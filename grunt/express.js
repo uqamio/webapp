@@ -6,7 +6,9 @@ module.exports = {
     },
     dev: {
         options: {
-            script: 'dist/app.js'
+            script: 'dist/app.js',
+            debug: true,
+            node_env: 'development'
         }
     }
     //prod: {

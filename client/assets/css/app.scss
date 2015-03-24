@@ -1,0 +1,11 @@
+@import "foundation/settings";
+
+//Overrides des variables de foundation
+$row-width: 100%;
+
+@import "foundation";
+@import "normalize";
+
+body{
+  background-color: inherit;
+}

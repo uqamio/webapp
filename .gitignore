@@ -54,3 +54,4 @@ node_modules
 client/test
 dist
 .sass-cache
+documentation
