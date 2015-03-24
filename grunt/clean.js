@@ -10,8 +10,7 @@ module.exports = {
     },
     documentation: {
         src: [
-            'documentation/serveur',
-            'documentation/client'
+            'documentation/**/*'
         ]
     }
 };

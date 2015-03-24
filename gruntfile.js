@@ -18,6 +18,12 @@ module.exports = function (grunt) {
         'wiredep',
         'jsdoc:dist']);
 
+    grunt.registerTask('executerDev', [
+        'env:dev',
+        'express:dev',
+        'open:dev',
+        'watch']);
+
     grunt.registerTask('serve', function (target) {
         if (target === 'dev')
             grunt.task.run([
@@ -27,7 +33,7 @@ module.exports = function (grunt) {
             console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
     });
 
-    grunt.registerTask('default', ['executerDev']);
+    grunt.registerTask('default', ['serve:dev']);
 
     grunt.registerTask('gruntDoc', [
         'jsdoc:grunt',

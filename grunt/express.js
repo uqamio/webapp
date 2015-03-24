@@ -16,12 +16,6 @@ module.exports = {
             debug: true,
             node_env: 'development'
         }
-    },
-    docGrunt: {
-        options: {
-            background: true,
-            script: 'documentation/gruntDoc.js'
-        }
     }
     //prod: {
     //    options: {

@@ -55,3 +55,4 @@ client/test
 dist
 .sass-cache
 documentation
+!documentation/gruntDoc.js

@@ -10,7 +10,7 @@ module.exports = {
         app: 'Google Chrome'
     },
     docGrunt: {
-        path: 'http://localhost:3001',
+        path: 'documentation/grunt/index.html',
         app: 'Google Chrome'
     },
     build: {

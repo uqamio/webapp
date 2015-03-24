@@ -27,7 +27,7 @@ module.exports = {
             livereload: true
         }
     },
-    express: {
+    serveur: {
         files:  [ './server/app.js' ],
         tasks:  [ 'copy:serverApp', 'express:dev' ],
         options: {
