@@ -11,7 +11,12 @@ module.exports = function (grunt) {
     });
     grunt.registerTask('default', ['watch']);
 
-    grunt.registerTask('build', []);
+    grunt.registerTask('build', [
+        'clean',
+        'copy',
+        'sass',
+        'injector',
+        'wiredep']);
 
     grunt.registerTask('serve', function(target) {
         grunt.task.run(['build','express:dev', 'watch']);
