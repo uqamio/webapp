@@ -27,9 +27,20 @@ module.exports = {
             livereload: true
         }
     },
+    scripts: {
+        files: [
+            '<%= repertoires.client %>app/**/*.js'
+        ],
+        tasks: [
+            'build'
+        ],
+        options: {
+            livereload: true
+        }
+    },
     serveur: {
-        files:  [ './server/app.js' ],
-        tasks:  [ 'copy:serverApp', 'express:dev' ],
+        files: ['./server/app.js'],
+        tasks: ['copy:serverApp', 'express:dev'],
         options: {
             spawn: false
         }

@@ -1,5 +1,2 @@
-
-
-var app = angular.module("baseApp", []);
-
+angular.module("baseApp", ['ngRoute']);
 

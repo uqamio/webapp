@@ -15,8 +15,12 @@ module.exports = function (grunt) {
         'copy',
         'sass',
         'injector',
-        'wiredep',
-        'jsdoc:dist']);
+        'wiredep']);
+
+    grunt.registerTask('buildDocs', [
+        'jsdoc',
+        'ngdoc'
+    ]);
 
     grunt.registerTask('executerDev', [
         'env:dev',

@@ -9,7 +9,10 @@ module.exports = {
             {
                 expand: true,
                 cwd: '<%= repertoires.client %>',
-                src: 'app/**/*.js',
+                src: [
+                    'app/**/*.js',
+                    '!app/**/*.spec.js'
+                ],
                 dest: '<%= repertoires.distribution %>public/scripts/'
             },
             {
@@ -18,7 +21,7 @@ module.exports = {
                 src: [
                     '**/*.html',
                     'bower_components/**/*'
-                    ],
+                ],
                 dest: '<%= repertoires.distribution %>public/'
             },
             {
