@@ -10,9 +10,8 @@ app.use(express.static(process.env.REPERTOIRE_PUBLIC));
 
 
 //Configurer les intergiciels
-app.use('/api/moodle/grades', function(req,res, next) {
-    moodle.getNote();
-});
+//Moodle
+app.use('/api/moodle/cotes', moodle.passerelle.coteFinals);
 
 var server = app.listen(port, ip, function () {
     console.log('YOUPPY!');

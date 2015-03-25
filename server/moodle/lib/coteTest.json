@@ -1,0 +1,57 @@
+{
+  "status": "success",
+  "data": {
+    "noerreur": 0,
+    "message": "",
+    "finalgrades": [
+      {
+        "username": "gj991805",
+        "grade": "37.50000"
+      },
+      {
+        "username": "bouley_h",
+        "grade": null
+      },
+      {
+        "username": "rhufr2",
+        "grade": "45.00000"
+      },
+      {
+        "username": "rhufr40",
+        "grade": "34.00000"
+      },
+      {
+        "username": "rhufr4",
+        "grade": "76.00000"
+      },
+      {
+        "username": "rhufr3",
+        "grade": "90.00000"
+      },
+      {
+        "username": "rhufr10",
+        "grade": "45.00000"
+      },
+      {
+        "username": "rhufr11",
+        "grade": "34.00000"
+      },
+      {
+        "username": "rhufr12",
+        "grade": "65.00000"
+      },
+      {
+        "username": "rhufr13",
+        "grade": "23.00000"
+      },
+      {
+        "username": "rhufr14",
+        "grade": "10.00000"
+      },
+      {
+        "username": "rhufr15",
+        "grade": "76.00000"
+      }
+    ]
+  }
+}
