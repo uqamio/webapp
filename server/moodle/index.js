@@ -1,5 +1,5 @@
 module.exports = {
-    getNote: function(){
-
+    passerelle: {
+        
     }
 };
