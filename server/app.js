@@ -1,21 +1,15 @@
 var express = require('express'),
     app = express();
 
-var moodle = require('./moodle/');
-
-var port = process.env.PORT || 3000,
-    ip = process.env.IP || '127.0.0.1';
+var port = process.env.PORT || 3000;
 
 app.use(express.static(process.env.REPERTOIRE_PUBLIC));
 
+var server = app.listen(port, function () {
+    var host = server.address().address;
+    var port = server.address().port;
 
-//Configurer les intergiciels
-app.use('/api/moodle/grades', function(req,res, next) {
-    moodle.getNote();
-});
-
-var server = app.listen(port, ip, function () {
-    console.log('YOUPPY!');
+    console.log('On part! http://%s:%s', host, port)
 });
 
 module.exports = app;

@@ -20,7 +20,8 @@ module.exports = {
                 cwd: '<%= repertoires.client %>',
                 src: [
                     '**/*.html',
-                    'bower_components/**/*'
+                    'bower_components/**/*',
+                    '*.ico'
                 ],
                 dest: '<%= repertoires.distribution %>public/'
             },
