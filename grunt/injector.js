@@ -16,6 +16,8 @@ module.exports = {
         },
         files: {
             '<%= repertoires.distribution %>public/index.html': [
+                '<%= repertoires.distribution %>public/scripts/app/app.js',
+                '<%= repertoires.distribution %>public/scripts/app/app.config.js',
                 '<%= repertoires.distribution %>public/scripts/**/*.js',
 
             ]

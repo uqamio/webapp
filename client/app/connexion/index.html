@@ -1,0 +1,42 @@
+
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Connexion</h1>
+    </div>
+</div>
+
+<form  ng-controller="ConnexionController">
+    <div class="row">
+        <div class="small-6 columns">
+            <div class="row">
+                <div class="small-6 columns">
+                    <label for="right-label" class="right inline">Nom d'usager</label>
+                </div>
+                <div class="small-6 columns">
+                    <input type="text" id="right-label" placeholder="Nom d'usager" ng-model="nomUsager">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="small-6 columns">
+        <div class="row">
+            <div class="small-6 columns">
+                <label for="right-label" class="right inline">Mode de passe</label>
+            </div>
+            <div class="small-6 columns">
+                <input type="password" id="right-label" placeholder="Mot de passe"  ng-model="motPasse">
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="small-6 columns">
+                <div class="small-12 columns">
+                    <button class="right" ng-click="connecter(nomUsager, motPasse)">Se connecter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
