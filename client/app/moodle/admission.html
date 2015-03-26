@@ -1,5 +1,16 @@
-<div class="row">
-    <div class="large-3 columns">...</div>
-    <div class="large-6 columns">...</div>
-    <div class="large-3 columns">...</div>
-</div>
+<h1>Les cotes</h1>
+
+<table class="fullWidth">
+    <thead>
+    <tr>
+        <th width="100">Code MS</th>
+        <th>Cote</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="cote in cotes">
+        <td>{{cote.username}}</td>
+        <td>{{cote.grade }}</td>
+    </tr>
+    </tbody>
+</table>

@@ -1,12 +1,9 @@
-var baseApp = angular.module('baseApp');
+angular.module('baseApp')
+    .controller('MoodleController', MoodleController);
 
-baseApp.controller('MoodleController', MoodleController);
+
+MoodleController.$inject = ['$scope'];
 
 function MoodleController($scope) {
-    $scope.inc = 0;
-    $scope.coucou = 'COUCOU 4!';
 
-    $scope.clique = function(){
-        $scope.inc++;
-    }
 }
