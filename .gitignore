@@ -56,3 +56,4 @@ dist
 .sass-cache
 documentation
 !documentation/gruntDoc.js
+server/configuration/securite
