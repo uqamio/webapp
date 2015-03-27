@@ -5,7 +5,10 @@
 module.exports = {
     build: {
         src: [
-            'dist/'
+            'dist/*',
+            '!dist/public/**',
+            'dist/public/*',
+            '!dist/public/css/**'
         ]
     },
     documentation: {

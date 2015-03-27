@@ -14,6 +14,9 @@ RUN apt-get install build-essential -y
 RUN apt-get install ruby-full -y
 RUN su -c "gem install sass"
 
+#Installer nano éditeur plus simple de vi
+RUN apt-get install nano -y
+
 ADD ./ /usr/www
 WORKDIR /usr/www
 

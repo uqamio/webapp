@@ -38,7 +38,6 @@ var moodle = require('./moodle/');
 
 //Initialiser les variables de processus.
 var port = process.env.PORT || 3000,
-    ip = process.env.IP || '127.0.0.1',
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js';
 
@@ -74,9 +73,15 @@ app.use(passport.session());
 //Moodle
 app.get('/api/moodle', passport.authenticate('saml', {
     failureRedirect: '/#401',
-    failureFlash: true
+    failureFlash: false
 }), function (req, res) {
+    console.log(req);
+    console.log(res);
     res.send('SECRET!');
+});
+
+app.post('/authentification',function(req, res){
+   console.log(req);
 });
 
 app.use('/api/moodle/cotes', passport.authenticate('saml', {
@@ -86,8 +91,11 @@ app.use('/api/moodle/cotes', passport.authenticate('saml', {
 
 
 //Démarrer le serveur
-var server = app.listen(port, ip, function () {
-    console.log('YOUPPY!');
+var server = app.listen(port, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('On part! http://%s:%s', host, port)
 });
 
 module.exports = app;
