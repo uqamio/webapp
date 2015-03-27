@@ -2,33 +2,46 @@ var fs = require('fs'),
     path = require("path");
 
 /**
- * Fast, unopinionated, minimalist web framework. [express]{@link https://www.npmjs.com/package/express}
+ * Fast, unopinionated, minimalist web framework.
+ * [express]{@link https://www.npmjs.com/package/express}
  * @type {exports}
  */
 var express = require('express'),
     app = express(),
     /**
-     * Simple, unobtrusive authentication for Node.js. [passport]{@link https://www.npmjs.com/package/passport}
+     * Simple, unobtrusive authentication for Node.js.
+     * [passport]{@link https://www.npmjs.com/package/passport}
      * @module server
      */
     passport = require('passport'),
     /**
-     * SAML 2.0 authentication strategy for Passport. [passport]{@link https://www.npmjs.com/package/passport-saml}
+     * SAML 2.0 authentication strategy for Passport.
+     * [passport-saml]{@link https://www.npmjs.com/package/passport-saml}
      * @module server
      */
     SamlStrategy = require('passport-saml').Strategy,
     /**
-     * Parse Cookie header and populate req.cookies with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware. Voir [cookie-parser]{@link https://www.npmjs.com/package/cookie-parser}
+     * Local username and password authentication strategy for Passport.
+     * [passport-local]{@link https://www.npmjs.com/package/passport-local}
+     * @module server
+     */
+    LocalStrategy = require('passport-local').Strategy,
+    /**
+     * Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+     * Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware.
+     * [cookie-parser]{@link https://www.npmjs.com/package/cookie-parser}
      * @module server
      */
     cookieParser = require('cookie-parser'),
     /**
-     * Simple session middleware for Express. [express-session]{@link https://www.npmjs.com/package/express-session}
+     * Simple session middleware for Express.
+     * [express-session]{@link https://www.npmjs.com/package/express-session}
      * @type {exports}
      */
     session = require('express-session'),
     /**
-     * Node.js body parsing middleware. [body-parser]{@link https://www.npmjs.com/package/body-parser}
+     * Node.js body parsing middleware.
+     * [body-parser]{@link https://www.npmjs.com/package/body-parser}
      * @module server
      */
     bodyParser = require('body-parser');
@@ -54,8 +67,15 @@ passport.use(new SamlStrategy({
         done(null, {});
     })
 );
-//Configurer express
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        if (username === password)
+            done(null, 'localUser');
+    }
+));
 
+
+//Configurer express
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
 app.use(express.static(repertoirePublic));
 app.use(cookieParser());
@@ -71,17 +91,18 @@ app.use(passport.session());
 //Configurer les intergiciels
 
 //Moodle
-app.get('/api/moodle', passport.authenticate('saml', {
-    failureRedirect: '/#401',
-    failureFlash: false
-}), function (req, res) {
-    console.log(req);
-    console.log(res);
-    res.send('SECRET!');
-});
+app.get('/api/moodle',
+    passport.authenticate(['local', 'saml'], {
+        failureRedirect: '/#401',
+        failureFlash: false
+    }), function (req, res) {
+        console.log(req);
+        console.log(res);
+        res.send('SECRET!');
+    });
 
-app.post('/authentification',function(req, res){
-   console.log(req);
+app.post('/authentification', function (req, res) {
+    console.log(req);
 });
 
 app.use('/api/moodle/cotes', passport.authenticate('saml', {
