@@ -23,11 +23,12 @@ RUN npm install -g grunt-cli
 RUN npm install -g bower
 RUN cd /usr/www && npm install
 RUN bower --allow-root install
- 
+
 EXPOSE 3000
 
 ENV NODE_ENV='development'
 ENV PORT=3000
 ENV REPERTOIRE_PUBLIC='./dist/public'
+ENV EMETTEUR='http://neo.dahriel.io'
 
 CMD forever -c node dist/app.js
