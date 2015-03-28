@@ -44,7 +44,10 @@ var express = require('express'),
      * [body-parser]{@link https://www.npmjs.com/package/body-parser}
      * @module server
      */
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    expressJwt = require('express-jwt'),
+    jwt = require('jsonwebtoken'),
+    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
 
 
 var moodle = require('./moodle/');
@@ -91,7 +94,7 @@ app.use(passport.session());
 //Configurer les intergiciels
 
 //Moodle
-app.get('/api/moodle',
+/*app.get('/api/moodle',
     passport.authenticate(['local', 'saml'], {
         failureRedirect: '/#401',
         failureFlash: false
@@ -99,17 +102,37 @@ app.get('/api/moodle',
         console.log(req);
         console.log(res);
         res.send('SECRET!');
-    });
+    });*/
 
 app.post('/authentification', function (req, res) {
-    console.log(req);
+    console.log(req.body);
+    var profile = {
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john@doe.com',
+        id: 123
+    };
+
+    // We are sending the profile inside the token
+    var token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
+    res.json({token: token});
 });
 
-app.use('/api/moodle/cotes', passport.authenticate('saml', {
-    failureRedirect: '/#401',
-    failureFlash: true
-}), moodle.passerelle.coteFinals);
+app.post('/authentificationLocal', function (req, res) {
+    var profile = {
+        first_name: 'Étudian',
+        last_name: 'Libre',
+        email: 'libre.etudiant@uqam.ca',
+        id: 123
+    };
+    // We are sending the profile inside the token
+    var token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
+    res.json({token: token});
 
+});
+//On bloque tous les calls vers /api
+app.use('/api', expressJwt({secret: secretClient}));
+app.use('/api/moodle/cotes', moodle.passerelle.coteFinals);
 
 //Démarrer le serveur
 var server = app.listen(port, function () {

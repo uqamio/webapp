@@ -10,8 +10,9 @@ angular.module("baseApp")
                 }
             });
         }])
-    .config(['$routeProvider',
-        function ($routeProvider) {
+    .config(['$routeProvider', '$httpProvider',
+        function ($routeProvider, $httpProvider) {
+            $httpProvider.interceptors.push('AuthIntercepteur');
             $routeProvider.
                 otherwise({
                     templateUrl: 'app/404/index.html'
