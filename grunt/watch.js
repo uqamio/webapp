@@ -29,7 +29,7 @@ module.exports = {
     },
     scripts: {
         files: [
-            '<%= repertoires.client %>app/**/*.js'
+            '<%= repertoires.client %>app/**/*.js',
         ],
         tasks: [
             'build'
@@ -39,7 +39,9 @@ module.exports = {
         }
     },
     serveur: {
-        files: ['./server/app.js'],
+        files: [
+            '<%= repertoires.serveur %>app.js',
+            '<%= repertoires.serveur %>vues/**/*.jade'],
         tasks: ['copy:serverApp', 'express:dev'],
         options: {
             spawn: false

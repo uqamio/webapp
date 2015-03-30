@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         data: {
             repertoires: {
                 client: 'client/',
-                server: 'server/',
+                serveur: 'server/',
                 distribution: 'dist/'
             }
         }

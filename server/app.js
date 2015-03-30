@@ -58,6 +58,9 @@ var port = process.env.PORT || 3000,
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js';
 
+//Configurer express
+app.set('views', path.resolve(__dirname, './vues'));
+app.set('view engine', 'jade');
 
 //Configurer passport
 passport.use(new SamlStrategy({
@@ -77,7 +80,6 @@ passport.use(new LocalStrategy(
             done(null, 'localUser');
     }
 ));
-
 
 //Configurer express
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
@@ -106,20 +108,16 @@ app.get('/gestion',
     });
 
 app.post('/authentification', function (req, res) {
-    console.log(req);
-    console.log(res);
-
     var profile = {
             first_name: 'Étudian',
             last_name: 'Libre',
             email: 'libre.etudiant@uqam.ca',
             id: 123456
         },
-        token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5}),
-        script = '<script>window.sessionStorage.setItem("token", \'%s\'); window.location.href = window.location.hostname + "/#/gestion"</script>';
+        token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
 
-    res.send(util.format(script, token));
-
+    res.render('tokenClient', { token: token });
+   // res.send(util.format(script, token));
 });
 
 //On bloque tous les calls vers /api
