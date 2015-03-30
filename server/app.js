@@ -1,5 +1,6 @@
 var fs = require('fs'),
-    path = require("path");
+    path = require("path"),
+    util = require('util');
 
 /**
  * Fast, unopinionated, minimalist web framework.
@@ -66,7 +67,7 @@ passport.use(new SamlStrategy({
         cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/certificat.crt'), 'utf-8'),
         identifierFormat: null
     }, function (profile, done) {
-        console.log(profile, done);
+        console.log('dans SamlStrategy', profile, done);
         done(null, {});
     })
 );
@@ -94,42 +95,33 @@ app.use(passport.session());
 //Configurer les intergiciels
 
 //Moodle
-/*app.get('/api/moodle',
-    passport.authenticate(['local', 'saml'], {
+app.get('/gestion',
+    passport.authenticate(['saml'], {
         failureRedirect: '/#401',
         failureFlash: false
     }), function (req, res) {
         console.log(req);
         console.log(res);
-        res.send('SECRET!');
-    });*/
+        res.send('Dans /gestion');
+    });
 
 app.post('/authentification', function (req, res) {
-    console.log(req.body);
-    var profile = {
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'john@doe.com',
-        id: 123
-    };
+    console.log(req);
+    console.log(res);
 
-    // We are sending the profile inside the token
-    var token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-    res.json({token: token});
+    var profile = {
+            first_name: 'Étudian',
+            last_name: 'Libre',
+            email: 'libre.etudiant@uqam.ca',
+            id: 123456
+        },
+        token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5}),
+        script = '<script>window.sessionStorage.setItem("token", \'%s\'); window.location.href = window.location.hostname + "/#/gestion"</script>';
+
+    res.send(util.format(script, token));
+
 });
 
-app.post('/authentificationLocal', function (req, res) {
-    var profile = {
-        first_name: 'Étudian',
-        last_name: 'Libre',
-        email: 'libre.etudiant@uqam.ca',
-        id: 123
-    };
-    // We are sending the profile inside the token
-    var token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-    res.json({token: token});
-
-});
 //On bloque tous les calls vers /api
 app.use('/api', expressJwt({secret: secretClient}));
 app.use('/api/moodle/cotes', moodle.passerelle.coteFinals);

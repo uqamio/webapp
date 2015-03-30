@@ -5,7 +5,7 @@ ConnexionController.$inject = ['$scope', '$http', '$window' , '$routeParams', 'A
 
 function ConnexionController($scope, $http, $window) {
     $scope.connecter = function () {
-        $http.post('/authentificationLocal', {})
+        $http.post('/authentification', {})
             .success(function (data, status, headers, config) {
                 console.log('data', data);
                 console.log('token', $window.sessionStorage.token);
