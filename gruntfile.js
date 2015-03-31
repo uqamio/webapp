@@ -27,6 +27,12 @@ module.exports = function (grunt) {
         'open:dev',
         'watch']);
 
+    grunt.registerTask('executerDebug', [
+        'env:dev',
+        'express:dev',
+        'open:dev',
+        'node-inspector']);
+
     grunt.registerTask('serve', function (target) {
         if (target === 'dev')
             grunt.task.run([

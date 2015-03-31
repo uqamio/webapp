@@ -51,7 +51,7 @@ var express = require('express'),
     secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
 
 
-var moodle = require('./moodle/');
+var meteo = require('./meteo/');
 
 //Initialiser les variables de processus.
 var port = process.env.PORT || 3000,
@@ -97,7 +97,7 @@ app.use(passport.session());
 //Configurer les intergiciels
 
 //Moodle
-app.get('/gestion',
+app.get('/authentification',
     passport.authenticate(['saml'], {
         failureRedirect: '/#401',
         failureFlash: false
@@ -115,14 +115,12 @@ app.post('/authentification', function (req, res) {
             id: 123456
         },
         token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-
-    res.render('tokenClient', { token: token });
-   // res.send(util.format(script, token));
+    res.render('tokenClient', {token: token});
 });
 
-//On bloque tous les calls vers /api
+//On sécure tous les calls vers /api
 app.use('/api', expressJwt({secret: secretClient}));
-app.use('/api/moodle/cotes', moodle.passerelle.coteFinals);
+app.use('/api/meteo/temperature/:ville', meteo.passerelle.temperatureActuelle);
 
 //Démarrer le serveur
 var server = app.listen(port, function () {

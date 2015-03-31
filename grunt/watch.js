@@ -5,16 +5,16 @@
  */
 
 module.exports = {
+    options: {
+        livereload: true
+    },
     css: {
         files: [
             '<%= repertoires.client %>**/*.scss'
         ],
         tasks: [
             'sass:dist'
-        ],
-        options: {
-            livereload: true
-        }
+        ]
     },
     html: {
         files: [
@@ -22,25 +22,19 @@ module.exports = {
         ],
         tasks: [
             'build'
-        ],
-        options: {
-            livereload: true
-        }
+        ]
     },
     scripts: {
         files: [
-            '<%= repertoires.client %>app/**/*.js',
+            '<%= repertoires.client %>app/**/*.js'
         ],
         tasks: [
             'build'
-        ],
-        options: {
-            livereload: true
-        }
+        ]
     },
     serveur: {
         files: [
-            '<%= repertoires.serveur %>app.js',
+            '<%= repertoires.serveur %>**/*.js',
             '<%= repertoires.serveur %>vues/**/*.jade'],
         tasks: ['copy:serverApp', 'express:dev'],
         options: {

@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>{{salut}}</h1>
+        <label>
+            Ville :
+            <select ng-options="item for item in villes" ng-model="villeSelectionnee" ng-change="getTemperature(villeSelectionnee)"> </select>
+        </label>
+        <p>Ville : {{villeSelectionnee}}</p>
+
+        <div ng-show="temperature">
+
+            <h2>Température pour {{temperature.name}}</h2>
+
+            <p>{{temperature.weather[0].description}}</p>
+            <p>Actuelle {{temperature.main.temp - 272.15 | number: 2}} C</p>
+            <p>Minimum {{temperature.main.temp_min - 272.15 | number: 2}} C, maximum {{temperature.main.temp_max - 272.15 | number: 2}} C</p>
+        </div>
+
+
+    </div>
+</div>

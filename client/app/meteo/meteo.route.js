@@ -6,9 +6,9 @@ config.$inject = ['$routeProvider'];
 
 function config($routeProvider) {
     $routeProvider
-        .when('/gestion', {
-            templateUrl: 'app/gestion/index.html',
-            controller: 'GestionController',
+        .when('/meteo', {
+            templateUrl: 'app/meteo/index.html',
+            controller: 'MeteoController',
             authentificationRequise: true
         });
 }
