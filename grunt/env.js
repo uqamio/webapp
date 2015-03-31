@@ -11,6 +11,7 @@ module.exports = {
         NODE_ENV: 'development',
         IP: '127.0.0.1',
         PORT: 3000,
-        REPERTOIRE_PUBLIC: './dist/public'
+        REPERTOIRE_PUBLIC: './dist/public',
+        EMETTEUR: 'http://neo.dahriel.io'
     }
 };

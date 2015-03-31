@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         data: {
             repertoires: {
                 client: 'client/',
-                server: 'server/',
+                serveur: 'server/',
                 distribution: 'dist/'
             }
         }
@@ -13,7 +13,6 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean',
         'copy',
-        'sass',
         'injector',
         'wiredep']);
 
@@ -27,6 +26,12 @@ module.exports = function (grunt) {
         'express:dev',
         'open:dev',
         'watch']);
+
+    grunt.registerTask('executerDebug', [
+        'env:dev',
+        'express:dev',
+        'open:dev',
+        'node-inspector']);
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dev')

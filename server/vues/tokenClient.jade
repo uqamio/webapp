@@ -1,0 +1,10 @@
+//- tokenClient.jade
+doctype html
+html
+  head
+    title= "Création du jeton"
+  body
+    p Création du jeton d'identité.
+    script(type='text/javascript').
+        window.sessionStorage.setItem("token", "#{token}")
+        window.location = "/#/"

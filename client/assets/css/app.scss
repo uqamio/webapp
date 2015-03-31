@@ -7,3 +7,10 @@ $row-width: 100%;
 @import "normalize";
 
 //Début de code css/scss de l'application
+
+.fullWidth {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+}

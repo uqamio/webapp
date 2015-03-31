@@ -20,13 +20,13 @@
 <body>
 
 
-<nav class="top-bar" data-topbar role="navigation">
+<div class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
             <h1><a href="#">SADSI</a></h1>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
     </ul>
 
     <section class="top-bar-section">
@@ -47,25 +47,26 @@
             <li><a href="#">Boutton de gauche</a></li>
         </ul>
     </section>
-</nav>
+</div>
 
 <div class="row">
 
     <aside class="large-3 columns">
         <h5>Actions</h5>
-        <ul class="side-nav">
-            <li><a href="#/">Accueil</a></li>
-            <li>
-                <a href="#/moodle">Moodle</a>
-                <ul>
-                    <li><a href="#/moodle/admission">Admission</a></li>
-                </ul>
-            </li>
-        </ul>
+        <nav class="toto" role="navigation">
+            <ul class="side-nav">
+                <li><a href="#/">Accueil</a></li>
+                <li>
+                    <a href="/authentification">Authentification</a>
+                    <ul>
+                        <li><a href="#/meteo">Météo</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 
         <div class="panel show-for-medium-up">
             <h5>Nouvelle</h5>
-
             <p>La nouvelle version est en ligne!</p>
             <a href="#">Détails</a>
         </div>

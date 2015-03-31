@@ -1,4 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
+<# Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
@@ -56,3 +56,4 @@ dist
 .sass-cache
 documentation
 !documentation/gruntDoc.js
+server/configuration/securite
