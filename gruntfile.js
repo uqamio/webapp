@@ -25,6 +25,7 @@ module.exports = function (grunt) {
         'env:dev',
         'express:dev',
         'open:dev',
+        'bunyan',
         'watch']);
 
     grunt.registerTask('executerDebug', [

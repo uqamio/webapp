@@ -48,8 +48,15 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     expressJwt = require('express-jwt'),
     jwt = require('jsonwebtoken'),
-    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
-
+    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt')),
+    bunyan = require('bunyan'),
+    log = bunyan.createLogger({
+        name: 'devServeur',
+        serializers: {
+            req: bunyan.stdSerializers.req,
+            res: bunyan.stdSerializers.res
+        }
+    });
 
 var meteo = require('./meteo/');
 
@@ -59,18 +66,15 @@ var port = process.env.PORT || 3000,
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js';
 
 //Configurer express
-app.set('views', path.resolve(__dirname, './vues'));
-app.set('view engine', 'jade');
 
 //Configurer passport
 passport.use(new SamlStrategy({
         path: '/authentification',
         entryPoint: 'https://code.uqam.ca/simplesaml/saml2/idp/SSOService.php',
         issuer: emetteur,
-        cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/certificat.crt'), 'utf-8'),
-        identifierFormat: null
+        cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/certificat.crt'), 'utf-8')
     }, function (profile, done) {
-        console.log('dans SamlStrategy', profile, done);
+        log.log('Dans SamlStrategy', profile, done);
         done(null, {});
     })
 );
@@ -83,7 +87,7 @@ passport.use(new LocalStrategy(
 
 //Configurer express
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
-app.use(express.static(repertoirePublic));
+app.use(express.static(path.resolve(__dirname, repertoirePublic)));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(session({
@@ -95,19 +99,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Configurer les intergiciels
-
-//Moodle
 app.get('/authentification',
     passport.authenticate(['saml'], {
         failureRedirect: '/#401',
         failureFlash: false
     }), function (req, res) {
-        console.log(req);
-        console.log(res);
-        res.send('Dans /gestion');
+        res.end(201);
     });
 
 app.post('/authentification', function (req, res) {
+    log.info({ req: req }, 'start request');
     var profile = {
             first_name: 'Étudian',
             last_name: 'Libre',
@@ -115,7 +116,8 @@ app.post('/authentification', function (req, res) {
             id: 123456
         },
         token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-    res.render('tokenClient', {token: token});
+    res.redirect(303, '/#/token/' + token);
+    log.info({ req: req }, 'end request');
 });
 
 //On sécure tous les calls vers /api

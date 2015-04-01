@@ -9,5 +9,9 @@ function config($routeProvider) {
         .when('/', {
             templateUrl: 'app/accueil/index.html',
             controller: 'AccueilController'
+        })
+        .when('/token/:token', {
+            templateUrl: 'app/accueil/index.html',
+            controller: 'AccueilController'
         });
 }

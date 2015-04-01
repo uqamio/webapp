@@ -3,6 +3,9 @@ angular.module('baseApp').
         return {
             estAuthentifie: function () {
                 return ($window.sessionStorage.token) ? true : false;
+            },
+            setToken: function(token){
+                $window.sessionStorage.token = token;
             }
         }
     });
