@@ -31,7 +31,7 @@ EXPOSE 3000
 
 ENV NODE_ENV='development'
 ENV PORT=3000
-ENV REPERTOIRE_PUBLIC='./dist/public'
+ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 
 CMD forever -c node dist/app.js
