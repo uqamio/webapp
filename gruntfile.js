@@ -5,12 +5,14 @@ module.exports = function (grunt) {
             repertoires: {
                 client: 'client/',
                 serveur: 'server/',
-                distribution: 'dist/'
+                distribution: 'dist/',
+                test: 'tests/'
             }
         }
     });
 
     grunt.registerTask('build', [
+        'mocha_istanbul:coverage',
         'clean',
         'copy',
         'injector',
