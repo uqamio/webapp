@@ -19,3 +19,7 @@ exports.temperatureActeulle = function (ville, fn) {
         }
     });
 };
+
+exports.add = function (a, b, fn) {
+   return a + b
+};
