@@ -3,7 +3,7 @@ var baseApp = angular.module('baseApp');
 
 baseApp.controller('AccueilController', AccueilController);
 
-AccueilController.$inject = ['$scope'];
+AccueilController.$inject = ['$scope', '$routeParams', 'Authentification'];
 
 
 /**
@@ -12,6 +12,6 @@ AccueilController.$inject = ['$scope'];
  * @description
  * Resize textarea automatically to the size of its text content.
  */
-function AccueilController($scope) {
-
+function AccueilController($scope, $routeParams, Authentification) {
+    Authentification.setToken($routeParams.token);
 }

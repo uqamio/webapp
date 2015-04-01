@@ -115,7 +115,7 @@ app.post('/authentification', function (req, res) {
             id: 123456
         },
         token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-    res.render('tokenClient', {token: token});
+    res.redirect('/#/token/' + token);
 });
 
 //On sécure tous les calls vers /api
