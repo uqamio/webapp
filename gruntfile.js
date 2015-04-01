@@ -12,7 +12,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', [
-        'mocha_istanbul:coverage',
         'clean',
         'copy',
         'injector',
@@ -33,12 +32,15 @@ module.exports = function (grunt) {
     grunt.registerTask('executerDebug', [
         'env:dev',
         'express:dev',
+        'open:debug',
         'open:dev',
+        'bunyan',
         'node-inspector']);
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dev')
             grunt.task.run([
+                'mocha_istanbul:coverage',
                 'build',
                 'executerDev']);
         else
