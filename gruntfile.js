@@ -37,6 +37,11 @@ module.exports = function (grunt) {
         'bunyan',
         'node-inspector']);
 
+    grunt.registerTask('testUnitaires', [
+        'mocha_istanbul:coverage',
+        'open:coverage']);
+
+
     grunt.registerTask('serve', function (target) {
         if (target === 'dev') {
             grunt.task.run([

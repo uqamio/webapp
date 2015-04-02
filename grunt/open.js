@@ -17,8 +17,8 @@ module.exports = {
     build: {
         path: 'http://google.com/'
     },
-    file: {
-        path: '/etc/hosts'
+    coverage: {
+        path: './coverage/lcov-report/index.html'
     },
     custom: {
         path: function () {
