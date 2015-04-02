@@ -6,19 +6,19 @@
 
 module.exports = {
     dev: {
-        path: 'http://localhost:3000',
-        app: 'Google Chrome'
+        path: 'http://localhost:3000'
+    },
+    debug: {
+        path: 'http://127.0.0.1:8080/debug?port=5858'
     },
     docGrunt: {
-        path: 'documentation/grunt/index.html',
-        app: 'Google Chrome'
+        path: 'documentation/grunt/index.html'
     },
     build: {
-        path: 'http://google.com/',
-        app: 'Firefox'
+        path: 'http://google.com/'
     },
-    file: {
-        path: '/etc/hosts'
+    coverage: {
+        path: './coverage/lcov-report/index.html'
     },
     custom: {
         path: function () {

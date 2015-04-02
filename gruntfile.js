@@ -4,8 +4,9 @@ module.exports = function (grunt) {
         data: {
             repertoires: {
                 client: 'client/',
-                server: 'server/',
-                distribution: 'dist/'
+                serveur: 'server/',
+                distribution: 'dist/',
+                test: 'tests/'
             }
         }
     });
@@ -13,22 +14,47 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean',
         'copy',
-        'sass',
         'injector',
-        'wiredep',
-        'jsdoc:dist']);
+        'wiredep']);
+
+    grunt.registerTask('buildDocs', [
+        'jsdoc',
+        'ngdoc'
+    ]);
 
     grunt.registerTask('executerDev', [
         'env:dev',
         'express:dev',
         'open:dev',
+        'bunyan',
         'watch']);
 
+    grunt.registerTask('executerDebug', [
+        'env:dev',
+        'express:dev',
+        'open:debug',
+        'open:dev',
+        'bunyan',
+        'node-inspector']);
+
+    grunt.registerTask('testUnitaires', [
+        'mocha_istanbul:coverage',
+        'open:coverage']);
+
+
     grunt.registerTask('serve', function (target) {
-        if (target === 'dev')
+        if (target === 'dev') {
             grunt.task.run([
+                'mocha_istanbul:coverage',
                 'build',
                 'executerDev']);
+        } else if (target === 'temoin') {
+            //grunt.task.run(['mocha_istanbul:coverage',
+            //    'build',
+            //    'executerDev']);
+        }
+
+
         else
             console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
     });
