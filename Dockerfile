@@ -24,7 +24,6 @@ ENV NODE_ENV='development'
 ENV PORT=3000
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
-ENV CI=true #Pour bower.
 
 RUN npm install npm
 RUN npm install forever -g
