@@ -38,11 +38,18 @@ module.exports = function (grunt) {
         'node-inspector']);
 
     grunt.registerTask('serve', function (target) {
-        if (target === 'dev')
+        if (target === 'dev') {
             grunt.task.run([
                 'mocha_istanbul:coverage',
                 'build',
                 'executerDev']);
+        } else if (target === 'temoin') {
+            //grunt.task.run(['mocha_istanbul:coverage',
+            //    'build',
+            //    'executerDev']);
+        }
+
+
         else
             console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
     });

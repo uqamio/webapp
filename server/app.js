@@ -22,12 +22,6 @@ var express = require('express'),
      */
     SamlStrategy = require('passport-saml').Strategy,
     /**
-     * Local username and password authentication strategy for Passport.
-     * [passport-local]{@link https://www.npmjs.com/package/passport-local}
-     * @module server
-     */
-    LocalStrategy = require('passport-local').Strategy,
-    /**
      * Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
      * Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware.
      * [cookie-parser]{@link https://www.npmjs.com/package/cookie-parser}
@@ -46,46 +40,60 @@ var express = require('express'),
      * @module server
      */
     bodyParser = require('body-parser'),
+    /**
+     * Middleware that validates JsonWebTokens and sets req.user.
+     * [express-jwt]{@link https://www.npmjs.com/package/express-jwt}
+     * @module server
+     */
     expressJwt = require('express-jwt'),
+    /**
+     * JSON Web Token implementation (symmetric and asymmetric).
+     * [jsonwebtoken]{@link https://www.npmjs.com/package/jsonwebtoken}
+     * @module server
+     */
     jwt = require('jsonwebtoken'),
-    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt')),
-    bunyan = require('bunyan'),
-    log = bunyan.createLogger({
-        name: 'devServeur',
-        serializers: {
-            req: bunyan.stdSerializers.req,
-            res: bunyan.stdSerializers.res
-        }
-    });
+    /**
+     * a JSON logging library for node.js services.
+     * [bunyan]{@link https://www.npmjs.com/package/bunyan}
+     * @module server
+     */
+    bunyan = require('bunyan');
 
+
+//Inclusion des intergiciels
 var meteo = require('./meteo/');
 
-//Initialiser les variables de processus.
+//Initialiser les variables d'exécution.
 var port = process.env.PORT || 3000,
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
-    repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js';
+    repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js',
+    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
 
-//Configurer express
+//Configurer bunyan
+var log = bunyan.createLogger({
+    name: 'devServeur',
+    serializers: {
+        req: bunyan.stdSerializers.req,
+        res: bunyan.stdSerializers.res
+    }
+});
+
 
 //Configurer passport
 passport.use(new SamlStrategy({
         path: '/authentification',
         entryPoint: 'https://code.uqam.ca/simplesaml/saml2/idp/SSOService.php',
         issuer: emetteur,
+        protocol: 'http://',
         cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/certificat.crt'), 'utf-8')
     }, function (profile, done) {
-        log.log('Dans SamlStrategy', profile, done);
-        done(null, {});
+        log.info('Dans SamlStrategy', profile, done);
+        return done(null, profile);
     })
 );
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        if (username === password)
-            done(null, 'localUser');
-    }
-));
 
 //Configurer express
+
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
 app.use(express.static(path.resolve(__dirname, repertoirePublic)));
 app.use(cookieParser());
@@ -98,7 +106,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Configurer les intergiciels
+//Configurer les chemins
 app.get('/authentification',
     passport.authenticate(['saml'], {
         failureRedirect: '/#401',
@@ -108,7 +116,7 @@ app.get('/authentification',
     });
 
 app.post('/authentification', function (req, res) {
-    log.info({ req: req }, 'start request');
+    log.info({req: req}, 'POST /authentification');
     var profile = {
             first_name: 'Étudian',
             last_name: 'Libre',
@@ -116,8 +124,9 @@ app.post('/authentification', function (req, res) {
             id: 123456
         },
         token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
+    res.setHeader('Connection', 'close');
     res.redirect(303, '/#/token/' + token);
-    log.info({ req: req }, 'end request');
+    res.end();
 });
 
 //On sécure tous les calls vers /api
