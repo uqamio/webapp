@@ -12,5 +12,6 @@ C'est tout!
 Si vous avez des erreurs de permissions avec la commande bower install. Il faut faire la commande suivante : 
 
 ```
-sudo git config --global url."https://".insteadOf git://
+   sudo git config --global url."https://".insteadOf git://
+   
 ```
