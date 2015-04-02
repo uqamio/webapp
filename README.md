@@ -2,7 +2,7 @@
 ---
 
 ## Installation
-- Cloner les sources : https://gitlab.com/uqamio/tfa.git
+- Cloner les sources : https://github.com/uqamio/webapp.git
 - npm install
 - bower install
 - grunt
