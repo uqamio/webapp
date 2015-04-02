@@ -9,6 +9,7 @@ RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
 RUN apt-get install nodejs -y
 RUN apt-get install build-essential -y
+RUN apt-get install git -y
 
 #Installer ruby pour sass
 RUN apt-get install ruby-full -y
