@@ -61,7 +61,9 @@ var express = require('express'),
 
 
 //Inclusion des intergiciels
-var meteo = require('./meteo/');
+var meteo = require('./meteo/')
+    fondation = require('./fondation'),
+    journalisation = fondation.journalisation;
 
 //Initialiser les variables d'exécution.
 var port = process.env.PORT || 3000,
@@ -127,6 +129,12 @@ app.post('/authentification', function (req, res) {
     res.setHeader('Connection', 'close');
     res.redirect(303, '/#/token/' + token);
     res.end();
+});
+
+//Journaliser
+app.get('/journalisation', function(res, res){
+    journalisation.connecter();
+    res.send('Woot?');
 });
 
 //On sécure tous les calls vers /api
