@@ -28,8 +28,6 @@ ENV EMETTEUR='http://neo.dahriel.io'
 #Pour bower
 ENV CI=true
 
-
-
 RUN npm install npm
 RUN npm install forever -g
 RUN npm install -g grunt-cli

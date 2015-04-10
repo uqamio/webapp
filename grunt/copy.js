@@ -32,7 +32,7 @@ module.exports = {
                     'images/**/*{.png,.jpg}'
                 ],
                 dest: '<%= repertoires.distribution %>public/'
-            },
+            }
         ]
     },
     serverApp: {
