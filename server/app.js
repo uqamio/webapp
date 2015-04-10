@@ -114,19 +114,25 @@ app.get('/authentification',
         res.end(201);
     });
 
-app.post('/authentification', function (req, res) {
-    log.info({req: req}, 'POST /authentification');
-    var profile = {
-            first_name: 'Étudian',
-            last_name: 'Libre',
-            email: 'libre.etudiant@uqam.ca',
-            id: 123456
-        },
-        token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-    res.setHeader('Connection', 'close');
-    res.redirect(303, '/#/token/' + token);
-    res.end();
-});
+app.post('/authentification',
+    passport.authenticate('saml', {
+        failureRedirect: '/authentification',
+        failureFlash: true,
+        session: false
+    }),
+    function (req, res) {
+        log.info({req: req}, 'POST /authentification');
+        var profile = {
+                first_name: 'Étudian',
+                last_name: 'Libre',
+                email: 'libre.etudiant@uqam.ca',
+                id: 123456
+            },
+            token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
+        res.setHeader('Connection', 'close');
+        res.redirect(303, '/#/token/' + token);
+        res.end();
+    });
 
 //On sécure tous les calls vers /api
 
