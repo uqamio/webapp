@@ -61,8 +61,7 @@ var express = require('express'),
 
 
 //Inclusion des intergiciels
-var meteo = require('./meteo/')
-    fondation = require('./fondation'),
+var fondation = require('./fondation'),
     journalisation = fondation.journalisation;
 
 //Initialiser les variables d'exécution.
@@ -80,7 +79,6 @@ var log = bunyan.createLogger({
     }
 });
 
-
 //Configurer passport
 passport.use(new SamlStrategy({
         path: '/authentification',
@@ -95,7 +93,6 @@ passport.use(new SamlStrategy({
 );
 
 //Configurer express
-
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
 app.use(express.static(path.resolve(__dirname, repertoirePublic)));
 app.use(cookieParser());
@@ -131,15 +128,7 @@ app.post('/authentification', function (req, res) {
     res.end();
 });
 
-//Journaliser
-app.get('/journalisation', function(res, res){
-    journalisation.connecter();
-    res.send('Woot?');
-});
-
 //On sécure tous les calls vers /api
-app.use('/api', expressJwt({secret: secretClient}));
-app.use('/api/meteo/temperature/:ville', meteo.passerelle.temperatureActuelle);
 
 //Démarrer le serveur
 var server = app.listen(port, function () {

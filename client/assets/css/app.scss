@@ -1,7 +1,19 @@
 @import "foundation/settings";
 
+//variables de base
+$faculte: #ed5621;
+
 //Overrides des variables de foundation
 $row-width: 100%;
+$topbar-bg-color: $faculte;
+$topbar-dropdown-bg: $faculte;
+$topbar-dropdown-link-bg: scale-color($faculte, $lightness: 7%);
+$topbar-dropdown-link-bg-hover: scale-color($faculte, $lightness: 14%);
+$topbar-link-bg: scale-color($faculte, $lightness: 28%);
+$topbar-link-bg-hover: $faculte;
+
+$topbar-link-bg-active: scale-color($faculte, $lightness: -28%);
+$topbar-link-bg-active-hover: scale-color($faculte, $lightness: -42%);
 
 @import "foundation";
 @import "normalize";
