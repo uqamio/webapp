@@ -26,7 +26,6 @@ module.exports = function (grunt) {
         'env:dev',
         'express:dev',
         'open:dev',
-        'bunyan',
         'watch']);
 
     grunt.registerTask('executerDebug', [
@@ -34,7 +33,6 @@ module.exports = function (grunt) {
         'express:dev',
         'open:debug',
         'open:dev',
-        'bunyan',
         'node-inspector']);
 
     grunt.registerTask('testUnitaires', [

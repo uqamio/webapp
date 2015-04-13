@@ -1,12 +1,16 @@
 @import "foundation/settings";
 
 //variables de base
-$faculte: #ed5621;
+$faculte: #0e2a50;
 
 //Overrides des variables de foundation
 $row-width: 100%;
+
+
+//TOP-BAR
 $topbar-bg-color: $faculte;
 $topbar-dropdown-bg: $faculte;
+
 $topbar-dropdown-link-bg: scale-color($faculte, $lightness: 7%);
 $topbar-dropdown-link-bg-hover: scale-color($faculte, $lightness: 14%);
 $topbar-link-bg: scale-color($faculte, $lightness: 28%);
@@ -15,8 +19,14 @@ $topbar-link-bg-hover: $faculte;
 $topbar-link-bg-active: scale-color($faculte, $lightness: -28%);
 $topbar-link-bg-active-hover: scale-color($faculte, $lightness: -42%);
 
+
 @import "foundation";
 @import "normalize";
+
+//OVERRIDE DES STYLES DE ZURB
+.top-bar{
+  color: #fff;
+}
 
 //Début de code css/scss de l'application
 

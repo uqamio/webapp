@@ -21,72 +21,58 @@
 
 <body>
 
-<div class="top-bar" data-topbar>
+
+<nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
             <h1>
-                <a href="#">
+                <a href="/#/">
                     UQAM | SADSI</a>
+
             </h1>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+        <li class="toggle-topbar menu-icon"><a href="/#/"><span></span></a></li>
     </ul>
 
     <section class="top-bar-section">
+            <span class="left">
+                 | Stage en éducation
+            </span>
         <!-- Right Nav Section -->
         <ul class="right">
             <li class="has-dropdown">
                 <a href="#">Menu</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="#" class="active">Accueil</a>
+                        <a href="/#/" class="active">Accueil</a>
                     </li>
                     <li>
-                        <a href="#">Autre lien</a>
+                        <a href="/#/">Autre lien</a>
                     </li>
                 </ul>
             </li>
         </ul>
-
-        <!-- Left Nav Section -->
-        <div class="left">
-            Stage en éducation
-        </div>
     </section>
-</div>
+</nav>
 
 <div class="row">
     <div class="large-12 columns" role="content" ng-view>
     </div>
 </div>
-
-<footer class="row">
-    <div class="large-12 columns">
-        <hr/>
-        <div class="row">
-            <div class="large-6 columns">
-                <small>UQAM | SADSI | MIT License</small>
-            </div>
-            <div class="large-6 columns">
-                <ul class="inline-list right">
-                    <li><a href="#">Lien 1</a></li>
-                    <li><a href="#">Lien 2</a></li>
-                    <li><a href="#">Lien 3</a></li>
-                    <li><a href="#">Lien 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
 <!-- bower:js -->
 <!-- endbower -->
 
 <!-- injector:js -->
 <!-- endinjector -->
 <script>
-    ~live~
+    //Charger livereload seulement en local
+    if (window.location.hostname == 'localhost') {
+        document.write('<script src="http://'
+        + window.location.hostname
+        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>');
+    }
+
     $(document).foundation();
 </script>
 

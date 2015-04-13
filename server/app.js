@@ -51,13 +51,7 @@ var express = require('express'),
      * [jsonwebtoken]{@link https://www.npmjs.com/package/jsonwebtoken}
      * @module server
      */
-    jwt = require('jsonwebtoken'),
-    /**
-     * a JSON logging library for node.js services.
-     * [bunyan]{@link https://www.npmjs.com/package/bunyan}
-     * @module server
-     */
-    bunyan = require('bunyan');
+    jwt = require('jsonwebtoken');
 
 
 //Inclusion des intergiciels
@@ -70,14 +64,6 @@ var port = process.env.PORT || 3000,
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js',
     secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
 
-//Configurer bunyan
-var log = bunyan.createLogger({
-    name: 'devServeur',
-    serializers: {
-        req: bunyan.stdSerializers.req,
-        res: bunyan.stdSerializers.res
-    }
-});
 
 //Configurer passport
 passport.use(new SamlStrategy({
@@ -141,7 +127,9 @@ var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('On part! http://%s:%s', host, port)
+
+    journalisation.log('On part le serveur! http://%s:%s. Logs : %s', host, port, path.resolve(process.cwd(), './logs/log.log'));
+    journalisation.warn('TEST', {a: 1234});
 });
 
 module.exports = app;

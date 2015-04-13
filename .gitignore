@@ -58,3 +58,4 @@ documentation
 !documentation/gruntDoc.js
 server/configuration/securite
 coverage
+logs/*.log
