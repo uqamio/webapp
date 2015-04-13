@@ -41,12 +41,6 @@ var express = require('express'),
      */
     bodyParser = require('body-parser'),
     /**
-     * Middleware that validates JsonWebTokens and sets req.user.
-     * [express-jwt]{@link https://www.npmjs.com/package/express-jwt}
-     * @module server
-     */
-    expressJwt = require('express-jwt'),
-    /**
      * JSON Web Token implementation (symmetric and asymmetric).
      * [jsonwebtoken]{@link https://www.npmjs.com/package/jsonwebtoken}
      * @module server
@@ -62,19 +56,26 @@ var fondation = require('./fondation'),
 var port = process.env.PORT || 3000,
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js',
-    secretClient = fs.readFileSync(path.resolve(__dirname, 'configuration/securite/secretClient.crt'));
+    secretClient = fs.readFileSync(path.resolve(__dirname, './configuration/securite/secretClient.certificate'));
 
 
 //Configurer passport
 passport.use(new SamlStrategy({
-        path: '/authentification',
         entryPoint: 'https://code.uqam.ca/simplesaml/saml2/idp/SSOService.php',
         issuer: emetteur,
-        protocol: 'http://',
-        cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/certificat.crt'), 'utf-8')
+        callbackUrl: 'http://neo.dahriel.io/authentification',
+        identifierFormat: null,
+        decryptionPvk: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/privatekey.pem'), 'utf-8'),
+        cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/code.uqam.ca.certificate'), 'utf-8'),
+        privateCert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/privatekey.pem'), 'utf-8')
     }, function (profile, done) {
-        log.info('Dans SamlStrategy', profile, done);
-        return done(null, profile);
+        var utilisateur = {
+            codeUQAM: profile.userName,
+            prenom: profile.givenName,
+            nom: profile.sn,
+            courriel: profile.mail
+        };
+        return done(null, utilisateur);
     })
 );
 
@@ -82,6 +83,9 @@ passport.use(new SamlStrategy({
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
 app.use(express.static(path.resolve(__dirname, repertoirePublic)));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 app.use(session({
     secret: 'On est open source.',
@@ -92,18 +96,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Configurer les chemins
-app.get('/authentification',
+app.get('/connection',
     passport.authenticate(['saml'], {
-        failureRedirect: '/#401',
-        failureFlash: false
+        failureRedirect: '/#/403'
     }), function (req, res) {
         res.end(201);
     });
 
+
 app.post('/authentification',
     passport.authenticate('saml', {
-        failureRedirect: '/authentification',
-        failureFlash: true,
+        failureRedirect: '/#/403',
         session: false
     }),
     function (req, res) {
@@ -114,10 +117,8 @@ app.post('/authentification',
                 email: 'libre.etudiant@uqam.ca',
                 id: 123456
             },
-            token = jwt.sign(profile, secretClient, {expiresInMinutes: 60 * 5});
-        res.setHeader('Connection', 'close');
-        res.redirect(303, '/#/token/' + token);
-        res.end();
+            token = jwt.sign(req.user, secretClient, {expiresInMinutes: 60 * 5});
+        res.redirect('/#/token/' + token);
     });
 
 //On sécure tous les calls vers /api
@@ -127,9 +128,7 @@ var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-
-    journalisation.log('On part le serveur! http://%s:%s. Logs : %s', host, port, path.resolve(process.cwd(), './logs/log.log'));
-    journalisation.warn('TEST', {a: 1234});
+    journalisation.info('On part le serveur! http://%s:%s.', host, port);
 });
 
 module.exports = app;

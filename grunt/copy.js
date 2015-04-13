@@ -40,7 +40,7 @@ module.exports = {
             {
                 expand: true,
                 cwd: '<%= repertoires.serveur %>',
-                src: '**/*.{js,json,crt,key,jade}',
+                src: '**/*.{js,json,certificate,pem,key}',
                 dest: '<%= repertoires.distribution %>'
             }]
     }
