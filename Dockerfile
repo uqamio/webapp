@@ -21,7 +21,7 @@ RUN apt-get install nano -y
 ADD ./ /usr/www
 WORKDIR /usr/www
 
-VOLUME /var/securite/certs
+VOLUME /var/securite/webapp/certs/
 VOLUME /var/securite/uqam/certs/
 
 ENV NODE_ENV='development'
