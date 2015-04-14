@@ -12,19 +12,19 @@ module.exports = new (winston.Logger)({
         new (winston.transports.Console)(),
         new (winston.transports.File)({
             name:'erreurs-log',
-            filename: path.resolve(process.cwd(), './logs/error.log'),
+            filename: path.resolve(process.cwd(), './server/logs/error.log'),
             json: true,
             level: 'error'
         }),
         new (winston.transports.File)({
             name:'avertissements-log',
-            filename: path.resolve(process.cwd(), './logs/warn.log'),
+            filename: path.resolve(process.cwd(), './server/logs/warn.log'),
             json: true,
             level: 'warn'
         }),
         new (winston.transports.File)({
             name:'infos-log',
-            filename: path.resolve(process.cwd(), './logs/info.log'),
+            filename: path.resolve(process.cwd(), './server/logs/info.log'),
             json: true,
             level: 'info'
         })

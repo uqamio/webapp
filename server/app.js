@@ -53,11 +53,10 @@ var fondation = require('./fondation'),
     journalisation = fondation.journalisation;
 
 //Initialiser les variables d'exécution.
-var port = process.env.PORT || 3000,
+var port = process.env.PORT || 2015,
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
-    repertoirePublic = process.env.REPERTOIRE_PUBLIC || './dist/app.js',
-    secretClient = fs.readFileSync(path.resolve(__dirname, './configuration/securite/secretClient.certificate'));
-
+    repertoirePublic = process.env.REPERTOIRE_PUBLIC || './public',
+    secretClient = fs.readFileSync('/var/securite/certs/secretClient.certificate');
 
 //Configurer passport
 passport.use(new SamlStrategy({
@@ -65,10 +64,11 @@ passport.use(new SamlStrategy({
         issuer: emetteur,
         callbackUrl: 'http://neo.dahriel.io/authentification',
         identifierFormat: null,
-        decryptionPvk: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/privatekey.pem'), 'utf-8'),
-        cert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/code.uqam.ca.certificate'), 'utf-8'),
-        privateCert: fs.readFileSync(path.resolve(__dirname, 'configuration/securite/privatekey.pem'), 'utf-8')
+        decryptionPvk: fs.readFileSync('/var/securite/certs/privatekey.pem', 'utf-8'),
+        cert: fs.readFileSync('/var/securite/uqam/certs/code.uqam.ca.certificate', 'utf-8'),
+        privateCert: fs.readFileSync('/var/securite/certs/privatekey.pem', 'utf-8')
     }, function (profile, done) {
+        //Mapper les information SAML pour générer le token.
         var utilisateur = {
             codeUQAM: profile.userName,
             prenom: profile.givenName,
@@ -95,7 +95,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Configurer les chemins
+//chemin de déclanchement de l'authentification
 app.get('/connection',
     passport.authenticate(['saml'], {
         failureRedirect: '/#/403'
@@ -103,25 +103,20 @@ app.get('/connection',
         res.end(201);
     });
 
-
+//Chemin de retour du porjet usager.
 app.post('/authentification',
     passport.authenticate('saml', {
         failureRedirect: '/#/403',
         session: false
     }),
     function (req, res) {
-        log.info({req: req}, 'POST /authentification');
-        var profile = {
-                first_name: 'Étudian',
-                last_name: 'Libre',
-                email: 'libre.etudiant@uqam.ca',
-                id: 123456
-            },
-            token = jwt.sign(req.user, secretClient, {expiresInMinutes: 60 * 5});
+        token = jwt.sign(req.user, secretClient, {expiresInMinutes: 60 * 5});
         res.redirect('/#/token/' + token);
     });
 
-//On sécure tous les calls vers /api
+// *** METTRE LES ROUTE VERS LES APIS ICI ***//
+
+
 
 //Démarrer le serveur
 var server = app.listen(port, function () {

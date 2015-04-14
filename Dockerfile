@@ -34,7 +34,8 @@ RUN npm install -g grunt-cli
 RUN npm install -g bower
 RUN npm install
 RUN bower install --allow-root --config.interactive=false
+RUN grunt deploy
 
-EXPOSE 3000
+EXPOSE 2015
 
 CMD forever -c node dist/app.js

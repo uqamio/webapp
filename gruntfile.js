@@ -17,11 +17,6 @@ module.exports = function (grunt) {
         'injector',
         'wiredep']);
 
-    grunt.registerTask('buildDocs', [
-        'jsdoc',
-        'ngdoc'
-    ]);
-
     grunt.registerTask('executerDev', [
         'env:dev',
         'express:dev',
@@ -35,10 +30,12 @@ module.exports = function (grunt) {
         'open:dev',
         'node-inspector']);
 
-    grunt.registerTask('testUnitaires', [
-        'mocha_istanbul:coverage',
-        'open:coverage']);
-
+    grunt.registerTask('deploy', [
+        'clean',
+        'concurrent:deploy',
+        'copy',
+        'injector',
+        'wiredep']);
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dev') {
@@ -51,16 +48,9 @@ module.exports = function (grunt) {
             //    'build',
             //    'executerDev']);
         }
-
-
         else
             console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target);
     });
 
     grunt.registerTask('default', ['serve:dev']);
-
-    grunt.registerTask('gruntDoc', [
-        'jsdoc:grunt',
-        'express:docGrunt',
-        'open:docGrunt']);
 };
