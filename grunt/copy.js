@@ -41,7 +41,7 @@ module.exports = {
                 expand: true,
                 cwd: '<%= repertoires.serveur %>',
                 src: [
-                    '**/*.{js,json}',
+                    '**/*.{js,json,md}',
                     '!**/*.spec.js'
                 ],
                 dest: '<%= repertoires.distribution %>'

@@ -9,11 +9,10 @@ module.exports =
             logConcurrentOutput: true
         }
     },
-    deploy: {
+    deployDev: {
         tasks: [
             'mocha_istanbul:coverage',
-            'sass:dist',
-            'jsdoc:serveur'
+            // 'jsdoc:serveur' //buggé
         ]
     }
 };

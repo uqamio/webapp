@@ -32,7 +32,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy', [
         'clean',
-        'concurrent:deploy',
+        'concurrent:deployDev',
+        'sass:dist',
         'copy',
         'injector',
         'wiredep']);
