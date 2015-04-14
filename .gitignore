@@ -51,12 +51,7 @@ crashlytics-build.properties
 
 client/bower_components
 node_modules
-client/test
 dist
 .sass-cache
-documentation
-!documentation/gruntDoc.js
 server/configuration/securite
-coverage
-logs/*.log
-server/logs/README.md
+server/logs/*.log
