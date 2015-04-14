@@ -56,13 +56,14 @@ var fondation = require('./fondation'),
 var port = process.env.PORT || 2015,
     emetteur = process.env.EMETTEUR || 'http://www.uqam.ca',
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './public',
-    secretClient = fs.readFileSync('/var/securite/certs/secretClient.certificate');
+    secretClient = fs.readFileSync('/var/securite/certs/secretClient.certificate'),
+    calbackUrl = process.env.PROJET_USAGER_CALLBACK_URL;
 
 //Configurer passport
 passport.use(new SamlStrategy({
         entryPoint: 'https://code.uqam.ca/simplesaml/saml2/idp/SSOService.php',
         issuer: emetteur,
-        callbackUrl: 'http://neo.dahriel.io/authentification',
+        callbackUrl: calbackUrl,
         identifierFormat: null,
         decryptionPvk: fs.readFileSync('/var/securite/certs/privatekey.pem', 'utf-8'),
         cert: fs.readFileSync('/var/securite/uqam/certs/code.uqam.ca.certificate', 'utf-8'),
@@ -78,6 +79,8 @@ passport.use(new SamlStrategy({
         return done(null, utilisateur);
     })
 );
+
+
 
 //Configurer express
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
@@ -114,9 +117,22 @@ app.post('/authentification',
         res.redirect('/#/token/' + token);
     });
 
-// *** METTRE LES ROUTE VERS LES APIS ICI ***//
+//Créer un token temporaire
 
+//chemin de déclanchement de l'authentification
+app.get('/tmptoken',
+    function (req, res) {
+        //Mapper les information SAML pour générer le token.
+        var utilisateur = {
+            codeUQAM: 'gj123456',
+            prenom: 'Prénom',
+            nom: 'Nom',
+            courriel: 'nom.prenom@uqam.ca'
+        };
 
+        token = jwt.sign(utilisateur, secretClient, {expiresInMinutes: 60 * 5});
+        res.redirect('/#/token/' + token);
+    });
 
 //Démarrer le serveur
 var server = app.listen(port, function () {

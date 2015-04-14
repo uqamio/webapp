@@ -7,6 +7,7 @@ module.exports = {
     dev: {
         NODE_ENV: 'development',
         PORT: 2015,
-        REPERTOIRE_PUBLIC: './public'
+        REPERTOIRE_PUBLIC: './public',
+        PROJET_USAGER_CALLBACK_URL: 'http://webapp.dahriel.io/authentification'
     }
 };
