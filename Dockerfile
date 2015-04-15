@@ -13,20 +13,20 @@ RUN apt-get update  &&  apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - &&\
     apt-get install -y nodejs
 
-ADD . /usr/www
-WORKDIR /usr/www
-
 ENV NODE_ENV='development'
 ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
 
+ADD . /usr/www
+WORKDIR /usr/www
+
 #Exécuter des commande de configuration et d'installation
 RUN git config --global url."https://".insteadOf git:// &&\
     npm install npm -g &&\
-    npm install &&\
-    npm install forever -g
+    npm install forever -g &&\
+    npm install
 
 EXPOSE 2015
 

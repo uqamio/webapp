@@ -38,14 +38,13 @@ var express = require('express'),
 
 //Inclusion des intergiciels
 var fondation = require('./fondation'),
-    journalisation = fondation.journalisation,
-    passport = fondation.authentification.passport;
+    journalisation = fondation.journalisation;
 
 //Initialiser les variables d'exécution.
 var port = process.env.PORT || 2015,
     repertoirePublic = process.env.REPERTOIRE_PUBLIC || './public',
     samelise = process.env.SAMLISE || false,
-    secretClient = fs.readFileSync('/var/securite/certs/secretClient.certificate');
+    secretClient = process.env.SECRET || 'UnPetitSecret_A_CHANGER_EN_PROD!!!!';
 
 //Configurer express
 //Configurer le chemins des fichiers statiques html, css, js, images et autres.
@@ -63,6 +62,7 @@ app.use(session({
 
 //Si l'app utilise l'authentification avec le projet usager.
 if (samelise == 'true') {
+    var passport = fondation.authentification.creerPassport();
     app.use(passport.initialize());
     app.use(passport.session());
 
