@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "connexion.route.js",
+  "sourceRoot": "",
+  "sources": [
+    "connexion.route.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA,eAAA;;AAAA,EAAA,OAAA,GAAU,OAAO,CAAC,MAAR,CAAe,SAAf,CAAV,CAAA;;AAAA,EACA,OAAO,CAAC,MAAR,CAAe,MAAf,CADA,CAAA;;AAAA,EAGA,MAAA,GAAS,SAAC,cAAD,GAAA;WACP,cACA,CAAC,IADD,CACM,YADN,EACoB;AAAA,MAChB,WAAA,EAAa,0BADG;AAAA,MAEhB,UAAA,EAAY,qBAFI;KADpB,EADO;EAAA,CAHT,CAAA;;AAAA,EAUA,MAAM,CAAC,OAAP,GAAiB,CAAC,gBAAD,CAVjB,CAAA;AAAA"
+}
