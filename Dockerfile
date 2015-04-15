@@ -7,17 +7,11 @@ RUN apt-get update  &&  apt-get install -y \
     curl \
     build-essential \
     git \
-    nano \
-    ruby-full
+    nano
 
 #installation de node
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - &&\
     apt-get install -y nodejs
-
-#Exécuter des commande de configuration et d'installation
-RUN su -c "gem install sass" &&\
-    git config --global url."https://".insteadOf git:// &&\
-    npm install
 
 ADD . /usr/www
 WORKDIR /usr/www
@@ -27,6 +21,12 @@ ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
+
+#Exécuter des commande de configuration et d'installation
+RUN git config --global url."https://".insteadOf git:// &&\
+    npm install npm -g &&\
+    npm install &&\
+    npm install forever -g
 
 EXPOSE 2015
 
