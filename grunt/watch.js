@@ -34,8 +34,7 @@ module.exports = {
     },
     serveur: {
         files: [
-            '<%= repertoires.serveur %>**/*.js',
-            '<%= repertoires.serveur %>vues/**/*.jade'],
+            '<%= repertoires.serveur %>**/*.js'],
         tasks: ['copy:serverApp', 'express:dev'],
         options: {
             spawn: false
