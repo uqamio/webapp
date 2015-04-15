@@ -43,6 +43,7 @@ module.exports = function (grunt) {
         if (target === 'dev') {
             grunt.task.run([
                 'build',
+                'sass:dist',
                 'executerDev']);
         } else if (target === 'temoin') {
             //grunt.task.run(['mocha_istanbul:coverage',
