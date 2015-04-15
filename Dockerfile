@@ -18,6 +18,7 @@ ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
+ENV SAMLISE=false
 
 ADD . /usr/www
 WORKDIR /usr/www

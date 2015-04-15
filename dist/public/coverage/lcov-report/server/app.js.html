@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for server/app.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">server/app.js</span></h1>
+    <h2>
+        Statements: <span class="metric">59.26% <small>(16 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">90% <small>(9 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">59.26% <small>(16 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">server/</a> &#187; app.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span></td><td class="text"><pre class="prettyprint lang-js">var fs = require('fs'),
+    path = require("path"),
+    util = require('util');
+&nbsp;
+/**
+ * Fast, unopinionated, minimalist web framework.
+ * [express]{@link https://www.npmjs.com/package/express}
+ * @type {exports}
+ */
+var express = require('express'),
+    app = express(),
+    /**
+     * Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+     * Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware.
+     * [cookie-parser]{@link https://www.npmjs.com/package/cookie-parser}
+     * @module server
+     */
+    cookieParser = require('cookie-parser'),
+    /**
+     * Simple session middleware for Express.
+     * [express-session]{@link https://www.npmjs.com/package/express-session}
+     * @type {exports}
+     */
+    session = require('express-session'),
+    /**
+     * Node.js body parsing middleware.
+     * [body-parser]{@link https://www.npmjs.com/package/body-parser}
+     * @module server
+     */
+    bodyParser = require('body-parser'),
+    /**
+     * JSON Web Token implementation (symmetric and asymmetric).
+     * [jsonwebtoken]{@link https://www.npmjs.com/package/jsonwebtoken}
+     * @module server
+     */
+    jwt = require('jsonwebtoken');
+&nbsp;
+&nbsp;
+//Inclusion des intergiciels
+var fondation = require('./fondation'),
+    journalisation = fondation.journalisation;
+&nbsp;
+//Initialiser les variables d'exécution.
+var port = process.env.PORT || 2015,
+    repertoirePublic = process.env.REPERTOIRE_PUBLIC || './public',
+    samelise = process.env.SAMLISE || false,
+    secretClient = process.env.SECRET || 'UnPetitSecret_A_CHANGER_EN_PROD!!!!';
+&nbsp;
+//Configurer express
+//Configurer le chemins des fichiers statiques html, css, js, images et autres.
+app.use(express.static(path.resolve(__dirname, repertoirePublic)));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'On est open source.',
+    resave: true,
+    saveUninitialized: true
+}));
+&nbsp;
+//Si l'app utilise l'authentification avec le projet usager.
+<span class="missing-if-branch" title="if path not taken" >I</span>if (samelise == 'true') {
+<span class="cstat-no" title="statement not covered" >    var passport = fondation.authentification.creerPassport();</span>
+<span class="cstat-no" title="statement not covered" >    app.use(passport.initialize());</span>
+<span class="cstat-no" title="statement not covered" >    app.use(passport.session());</span>
+&nbsp;
+    //chemin de déclanchement de l'authentification
+<span class="cstat-no" title="statement not covered" >    app.get('/connexion',</span>
+        passport.authenticate('saml', {
+            failureRedirect: '/#/403'
+        }), <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >            res.end(201);</span>
+        });
+&nbsp;
+    //Chemin de retour du porjet usager.
+<span class="cstat-no" title="statement not covered" >    app.post('/authentification',</span>
+        passport.authenticate('saml', {
+            failureRedirect: '/#/403',
+            session: false
+        }),
+<span class="fstat-no" title="function not covered" >        function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >            token = jwt.sign(req.user, secretClient, {expiresInMinutes: 60 * 5});</span>
+<span class="cstat-no" title="statement not covered" >            res.redirect('/#/token/' + token);</span>
+        });
+}
+//Créer un token temporaire
+app.get('/tmptoken',
+<span class="fstat-no" title="function not covered" >    function (req, res) {</span>
+        //Mapper les information SAML pour générer le token.
+<span class="cstat-no" title="statement not covered" >        var utilisateur = {</span>
+            codeUQAM: 'gj123456',
+            prenom: 'Prénom',
+            nom: 'Nom',
+            courriel: 'nom.prenom@uqam.ca'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        token = jwt.sign(utilisateur, secretClient, {expiresInMinutes: 60 * 5});</span>
+<span class="cstat-no" title="statement not covered" >        res.redirect('/#/token/' + token);</span>
+    });
+&nbsp;
+//Démarrer le serveur
+var server = app.listen(port, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+&nbsp;
+    journalisation.info('On part le serveur! http://%s:%s.', host, port);
+});
+&nbsp;
+module.exports = app;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 15 2015 11:15:12 GMT-0400 (EDT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

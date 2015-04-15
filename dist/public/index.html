@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="baseApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>UQAM | SADSI | Web App</title>
+
+    <meta name='viewport' id="viewPort" name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- injector:css -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- endinjector -->
+
+</head>
+
+<body>
+
+
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1>
+                <a href="/#/">
+                    UQAM | SADSI</a>
+
+            </h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="/#/"><span></span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+            <span class="left">
+                 | Stage en éducation
+            </span>
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown">
+                <a href="#">Menu</a>
+                <ul class="dropdown">
+                    <li>
+                        <a href="/#/" class="active">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="/#/">Autre lien</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</nav>
+
+<div class="row">
+    <div class="large-12 columns" role="content" ng-view>
+    </div>
+</div>
+<!-- bower:js -->
+<script src="bower_components/modernizr/modernizr.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+<script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+<script src="bower_components/foundation/js/foundation.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<!-- endbower -->
+
+<!-- injector:js -->
+<script src="scripts/app/app.js"></script>
+<script src="scripts/app/app.config.js"></script>
+<script src="scripts/app/accueil/accueil.controller.js"></script>
+<script src="scripts/app/accueil/accueil.route.js"></script>
+<script src="scripts/app/connexion/connexion.controller.js"></script>
+<script src="scripts/app/connexion/connexion.route.js"></script>
+<script src="scripts/app/route-config.js"></script>
+<script src="scripts/app/services/AuthIntercepteur.service.js"></script>
+<script src="scripts/app/services/authentification.service.js"></script>
+<!-- endinjector -->
+<script>
+    //Charger livereload seulement en local
+    if (window.location.hostname == 'localhost') {
+        document.write('<script src="http://'
+        + window.location.hostname
+        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>');
+    }
+
+    $(document).foundation();
+</script>
+
+</body>
+
+</html>
