@@ -16,7 +16,8 @@ RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - &&\
 
 #Exécuter des commande de configuration et d'installation
 RUN su -c "gem install sass" &&\
-    git config --global url."https://".insteadOf git://
+    git config --global url."https://".insteadOf git:// &&\
+    npm install
 
 ADD . /usr/www
 WORKDIR /usr/www
@@ -26,11 +27,6 @@ ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
-
-#Démarrer le site
-RUN npm install npm -g &&\
-    npm install forever -g &&\
-    npm install
 
 EXPOSE 2015
 
