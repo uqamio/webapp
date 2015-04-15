@@ -7,3 +7,10 @@ server/
 client/
 dist/logs/*.log
 client/bower_components
+.gitignore
+bower.json
+package.json
+gruntfile.js
+npm-debug.log
+.bowerrc
+README.md

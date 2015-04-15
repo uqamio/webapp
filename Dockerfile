@@ -26,15 +26,11 @@ ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
-#Pour bower
-ENV CI=true
 
+#Démarrer le site
 RUN npm install npm -g &&\
     npm install forever -g &&\
-    npm install -g grunt-cli &&\
-    npm install -g bower &&\
-    npm install &&\
-    bower install --allow-root --config.interactive=false
+    npm install
 
 EXPOSE 2015
 
