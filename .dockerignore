@@ -1,9 +1,9 @@
 
-client/bower_components
-node_modules
+node_modules/
 .sass-cache
 .idea/
 .git/
-server
-client
+server/
+client/
 dist/logs/*.log
+client/bower_components

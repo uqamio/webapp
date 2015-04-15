@@ -3,44 +3,38 @@ FROM ubuntu:14.04
 
 MAINTAINER Gabriel Com "com.gabriel@uqam.ca"
 
-#Installer node
-RUN apt-get update
-RUN apt-get install curl -y
-RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
-RUN apt-get install nodejs -y
-RUN apt-get install build-essential -y
-RUN apt-get install git -y
+RUN apt-get update  &&  apt-get install -y \
+    curl \
+    build-essential \
+    git \
+    nano \
+    ruby-full
 
-#Installer ruby pour sass
-RUN apt-get install ruby-full -y
-RUN su -c "gem install sass"
+#installation de node
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - &&\
+    apt-get install -y nodejs
 
-#Installer nano éditeur plus simple de vi
-RUN apt-get install nano -y
+#Exécuter des commande de configuration et d'installation
+RUN su -c "gem install sass" &&\
+    git config --global url."https://".insteadOf git://
 
-ADD ./ /usr/www
+ADD . /usr/www
 WORKDIR /usr/www
-
-VOLUME /var/securite/webapp/certs/
-VOLUME /var/securite/uqam/certs/
 
 ENV NODE_ENV='development'
 ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
 ENV PROJET_USAGER_CALLBACK_URL='http://webapp.dahriel.io/authentification'
-
 #Pour bower
 ENV CI=true
-#Sinon on ne pourra pas télécharger
-RUN git config --global url."https://".insteadOf git://
 
-RUN npm install npm -g
-RUN npm install forever -g
-RUN npm install -g grunt-cli
-RUN npm install -g bower
-RUN npm install
-RUN bower install --allow-root --config.interactive=false
+RUN npm install npm -g &&\
+    npm install forever -g &&\
+    npm install -g grunt-cli &&\
+    npm install -g bower &&\
+    npm install &&\
+    bower install --allow-root --config.interactive=false
 
 EXPOSE 2015
 
