@@ -8,5 +8,11 @@ module.exports =
         options: {
             logConcurrentOutput: true
         }
+    },
+    deployDev: {
+        tasks: [
+            'mocha_istanbul:coverage',
+            // 'jsdoc:serveur' //buggé
+        ]
     }
 };

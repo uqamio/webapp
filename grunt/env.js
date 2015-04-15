@@ -4,14 +4,11 @@
  * @module grunt/env
  */
 module.exports = {
-    options: {
-        //Shared Options Hash
-    },
     dev: {
         NODE_ENV: 'development',
-        IP: '127.0.0.1',
-        PORT: 3000,
+        PORT: 2015,
         REPERTOIRE_PUBLIC: './public',
-        EMETTEUR: 'http://neo.dahriel.io'
+        PROJET_USAGER_CALLBACK_URL: 'http://webapp.dahriel.io/authentification',
+        SAMLISE: false
     }
 };

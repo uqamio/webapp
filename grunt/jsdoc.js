@@ -8,17 +8,9 @@
 module.exports =
 {
     serveur: {
-        src: ['dist/**/*.js', '!dist/public/**/*'],
+        src: ['server/**/*.js'],
         options: {
-            destination: 'documentation/serveur',
-            template: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-            configure: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
-        }
-    },
-    grunt:{
-        src: ['grunt/**/*.js'],
-        options: {
-            destination: 'documentation/grunt/',
+            destination: './dist/public/documentation/serveur',
             template: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
             configure: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
         }

@@ -32,7 +32,7 @@ module.exports = {
                     'images/**/*{.png,.jpg}'
                 ],
                 dest: '<%= repertoires.distribution %>public/'
-            },
+            }
         ]
     },
     serverApp: {
@@ -40,7 +40,10 @@ module.exports = {
             {
                 expand: true,
                 cwd: '<%= repertoires.serveur %>',
-                src: '**/*.{js,json,crt,key,jade}',
+                src: [
+                    '**/*.{js,json,md}',
+                    '!**/*.spec.js'
+                ],
                 dest: '<%= repertoires.distribution %>'
             }]
     }

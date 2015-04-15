@@ -6,7 +6,7 @@
 
 module.exports = {
     dev: {
-        path: 'http://localhost:3000'
+        path: 'http://localhost:2015'
     },
     debug: {
         path: 'http://127.0.0.1:8080/debug?port=5858'
@@ -18,7 +18,7 @@ module.exports = {
         path: 'http://google.com/'
     },
     coverage: {
-        path: './coverage/lcov-report/index.html'
+        path: 'http://localhost:2015/coverage/lcov-report/index.html'
     },
     custom: {
         path: function () {

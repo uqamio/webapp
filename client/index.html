@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title>TFA Team</title>
+    <title>UQAM | SADSI | Web App</title>
 
     <meta name='viewport' id="viewPort" name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -15,100 +15,61 @@
     <!-- injector:css -->
     <!-- endinjector -->
 
-    <link rel="openid.server" href="https://openidp.feide.no/simplesaml/module.php/openidProvider/server.php"/>
-
 </head>
 
 <body>
 
 
-<div class="top-bar" data-topbar>
+<nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
-            <h1><a href="#">SADSI</a></h1>
+            <h1>
+                <a href="/#/">
+                    UQAM | SADSI</a>
+
+            </h1>
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+        <li class="toggle-topbar menu-icon"><a href="/#/"><span></span></a></li>
     </ul>
 
     <section class="top-bar-section">
+            <span class="left">
+                 | Stage en éducation
+            </span>
         <!-- Right Nav Section -->
         <ul class="right">
-            <li class="active"><a href="#">Right Button Active</a></li>
             <li class="has-dropdown">
-                <a href="#">Right Button Dropdown</a>
+                <a href="#">Menu</a>
                 <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a></li>
-                    <li class="active"><a href="#">Active link in dropdown</a></li>
+                    <li>
+                        <a href="/#/" class="active">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="/#/">Autre lien</a>
+                    </li>
                 </ul>
             </li>
         </ul>
-
-        <!-- Left Nav Section -->
-        <ul class="left">
-            <li><a href="#">Boutton de gauche</a></li>
-        </ul>
     </section>
-</div>
+</nav>
 
 <div class="row">
-
-    <aside class="large-3 columns">
-        <h5>Actions</h5>
-        <nav class="toto" role="navigation">
-            <ul class="side-nav">
-                <li><a href="#/">Accueil</a></li>
-                <li>
-                    <a href="/authentification">Authentification</a>
-                    <ul>
-                        <li><a href="#/meteo">Météo</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="panel show-for-medium-up">
-            <h5>Nouvelle</h5>
-
-            <p>La nouvelle version est en ligne!</p>
-            <a href="#">Détails</a>
-        </div>
-
-    </aside>
-
-    <div class="large-9 columns" role="content" ng-view>
+    <div class="large-12 columns" role="content" ng-view>
     </div>
 </div>
-
-
-<footer class="row">
-    <div class="large-12 columns">
-        <hr/>
-        <div class="row">
-            <div class="large-6 columns">
-                <p>MIT License</p>
-            </div>
-            <div class="large-6 columns">
-                <ul class="inline-list right">
-                    <li><a href="#">Lien 1</a></li>
-                    <li><a href="#">Lien 2</a></li>
-                    <li><a href="#">Lien 3</a></li>
-                    <li><a href="#">Lien 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
 <!-- bower:js -->
 <!-- endbower -->
 
 <!-- injector:js -->
 <!-- endinjector -->
 <script>
-    document.write('<script src="http://'
-    + window.location.hostname
-    + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>');
+    //Charger livereload seulement en local
+    if (window.location.hostname == 'localhost') {
+        document.write('<script src="http://'
+        + window.location.hostname
+        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>');
+    }
 
     $(document).foundation();
 </script>
