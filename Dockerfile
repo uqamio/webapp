@@ -13,7 +13,7 @@ RUN apt-get update  &&  apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - &&\
     apt-get install -y nodejs
 
-ENV NODE_ENV='development'
+ENV NODE_ENV='production'
 ENV PORT=2015
 ENV REPERTOIRE_PUBLIC='./public'
 ENV EMETTEUR='http://neo.dahriel.io'
