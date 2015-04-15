@@ -30,10 +30,16 @@ module.exports = function (grunt) {
         'open:dev',
         'node-inspector']);
 
-    grunt.registerTask('deploy', [
-        'mocha_istanbul:coverage',
+    grunt.registerTask('deployDev', [
         'clean',
-        'concurrent:deployDev',
+        'concurrent:deployDevDev',
+        'sass:dist',
+        'copy',
+        'injector',
+        'wiredep']);
+
+    grunt.registerTask('deployProd', [
+        'clean',
         'sass:dist',
         'copy',
         'injector',
