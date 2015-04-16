@@ -1,7 +1,4 @@
 baseApp = angular.module 'baseApp'
-baseApp.controller('ConnexionController', ConnexionController);
-
-
 
 ConnexionController = ($scope, $http, $window) ->
   $scope.connecter = ()->
@@ -9,7 +6,7 @@ ConnexionController = ($scope, $http, $window) ->
     .success((data, status, headers, config) ->
       $window.sessionStorage.token = data.token
       console.log('token', $window.sessionStorage.token)
-      $scope.message = 'Welcome';
+      $scope.message = 'Welcome'
     )
     .error((data, status, headers, config) ->
       # Erase the token if the user fails to log in
@@ -18,4 +15,5 @@ ConnexionController = ($scope, $http, $window) ->
       $scope.message = 'Error: Invalid user or password'
     )
 
-ConnexionController.$inject = ['$scope', '$http', '$window', '$routeParams', 'Authentification'];
+ConnexionController.$inject = ['$scope', '$http', '$window', '$routeParams', 'Authentification']
+baseApp.controller('ConnexionController', ConnexionController)

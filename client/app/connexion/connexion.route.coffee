@@ -1,11 +1,9 @@
-baseApp = angular.module 'baseApp'
-baseApp.config(config);
-
-config = ($routeProvider) ->
+configuration = ($routeProvider) ->
   $routeProvider
   .when('/connexion', {
       templateUrl: 'app/connexion/index.html',
       controller: 'ConnexionController'
     });
 
-config.$inject = ['$routeProvider'];
+configuration.$inject = ['$routeProvider']
+(angular.module 'baseApp').config(configuration)
