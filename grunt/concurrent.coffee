@@ -11,8 +11,7 @@ module.exports =
   },
   deployDev: {
     tasks: [
-      'mocha_istanbul:coverage',
-      #'jsdoc:serveur' //buggé
+      'mocha_istanbul:coverage'
     ]
   }
 }

@@ -36,7 +36,8 @@ module.exports =
 
     grunt.registerTask 'deployDev',
       ['clean',
-       'concurrent:deployDevDev',
+       'coffee'
+       'concurrent:deployDev',
        'sass:dist',
        'copy',
        'injector',
@@ -44,6 +45,7 @@ module.exports =
 
     grunt.registerTask 'deployProd',
       ['clean',
+       'coffee'
        'sass:dist',
        'copy',
        'injector',
